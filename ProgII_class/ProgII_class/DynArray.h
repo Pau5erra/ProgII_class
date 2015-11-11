@@ -42,7 +42,8 @@ public:
 	//PushBack(element)- afegeic alguna cosa al final de la cadena
 	void PushBack(const TYPE& new_element){
 		if (capacity<num_elem){
-			TYPE* tmp = new tmp[capacity];
+			
+			TYPE* tmp = data;
 			data = new TYPE[capacity + BLOCK];
 			mempcy(data, tmp, num_elem*sizeof(TYPE));
 			delete[] tmp;
@@ -63,7 +64,7 @@ public:
 
 	
 	//At(int)- Retorna el valor de la posició que li dones
-	TYPE& At(const uint& position) const {
+	TYPE& At(uint position) const { //UINT NI CONST NI REFERENCIA
 		if (position > capacity){
 			printf("No position");
 		}
@@ -80,9 +81,9 @@ public:
 		num_elem = 0;
 	}
 
-	TYPE& operator[](const uint& position)const{
+	TYPE& operator[](uint position)const{ //PUTO UINT NI CONST NI REFERENCIA
 		assert(position < num_elem);
-			return data[index];
+			return data[position];
 		
 	}
 
@@ -94,29 +95,38 @@ public:
 		memcpy(data, new_array.data, new_array.num_elem*sizeof(TYPE));
 	}
 
-	void PopBack(){
+	const DynArray& operator+=(const DynArray& new_array){
 
-		if (num_elem == 0){
-			printf("NO ELEMENTS");
-		}
-		else
-			num_elem--;
 	}
 
-	void shrink_to_fit(){
-		if(num_elem == capacity){
-			printf("ARE EQUAL");
+	bool PopBack(TYPE& value){//Aqui la fai referència perquè aixi retorna el valor que hi ha.
+
+		if (num_elem>0){
+			value = data[--num_elem]
+				return true;
 		}
-		else{
-			TYPE* tmp = new TYPE[capacity];
-			capacity = num_elem - 1;
-			data = new TYPE[capacity];
+		return false;
+		
+	}
+
+	void ShrinkToFit(){
+		if(capacity != num_elem){
+			TYPE* tmp = data;
+			capacity = num_elem;
+			data = new TYPE[num_elem];
 			memcpy(data, tmp, num_elem*sizeof(TYPE);
 			delete[] tmp;
 		}
 	}
 
+	void Flip(){
+		TYPE* tmp = data;
+		data = new TYPE[num_elem];
+		
+	}
+
 	void Insert(const uint& position, const TYPE& new_array){
+		
 		if (pos > num_elem){
 
 		}
@@ -126,6 +136,20 @@ public:
 		data[position] = new_array;
 		num_elem++:
 	
+	}
+
+	void Insert(uint position, const TYPE& new_data){//Marti
+		
+		num_elem++;
+		TYPE* tmp = data;
+		
+		if (capacity < num_elem){
+			data = new TYPE[num_elem];
+			capacity++;
+			memcpy(data, tmp, (position)*sizeof(TYPE));
+
+		}
+
 	}
 };
 #endif
