@@ -1,3 +1,4 @@
+#include <assert.h>
 typedef unsigned int uint;
 
 #define NULL 0

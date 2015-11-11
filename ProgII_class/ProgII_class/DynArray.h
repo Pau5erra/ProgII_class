@@ -51,6 +51,7 @@ public:
 
 		data[num_elem++] = new_element;
 	}
+
 	//Capacity- retorna la capacitat
 	uint Capacity(){
 		return capacity;
@@ -68,14 +69,63 @@ public:
 		}
 		return data[position];
 	}
+
 	//Empty- Mira si l'array està buida
 	bool Empty()const{
 		return num_elem == 0;
 	}
+
 	//clear- posa l'array a 0;
 	void Clear(){
 		num_elem = 0;
 	}
 
+	TYPE& operator[](const uint& position)const{
+		assert(position < num_elem);
+			return data[index];
+		
+	}
+
+	const DynArray& operator= (const DynArray& new_array){
+		if (new_array.capacity>capacity){
+			delete[] data;
+			data = new TYPE[new_array.capacity];
+		}
+		memcpy(data, new_array.data, new_array.num_elem*sizeof(TYPE));
+	}
+
+	void PopBack(){
+
+		if (num_elem == 0){
+			printf("NO ELEMENTS");
+		}
+		else
+			num_elem--;
+	}
+
+	void shrink_to_fit(){
+		if(num_elem == capacity){
+			printf("ARE EQUAL");
+		}
+		else{
+			TYPE* tmp = new TYPE[capacity];
+			capacity = num_elem - 1;
+			data = new TYPE[capacity];
+			memcpy(data, tmp, num_elem*sizeof(TYPE);
+			delete[] tmp;
+		}
+	}
+
+	void Insert(const uint& position, const TYPE& new_array){
+		if (pos > num_elem){
+
+		}
+		for (int i = num_elem ; position < i ; i--){
+			data[i] = data[i - 1];
+		}
+		data[position] = new_array;
+		num_elem++:
+	
+	}
 };
 #endif
