@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="Definitions.h" />
     <ClInclude Include="DynArray.h" />
+    <ClInclude Include="p2List.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
