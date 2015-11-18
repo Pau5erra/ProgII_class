@@ -5,13 +5,9 @@
 template<class TYPE>
 
 struct Node{
-	friend class p2List;
-private:
+public:
 	Node<TYPE>* prev=NULL;
 	Node<TYPE>* next=NULL;
-
-public:
-
 	TYPE data = NULL;
 	
 
@@ -23,11 +19,13 @@ public:
 
 };
 
+
 template<class TYPE>
+
 class p2List{
 private:
 
-	Node<TYPE>* start=NULL;
+	Node<TYPE>* start =  NULL;
 
 public:
 //Constructor
@@ -37,7 +35,7 @@ public:
 
 	//Destructor
 	~p2List(){
-		clear();
+		Clear();
 	}
 
 	Node<TYPE>* GetStart()const {
@@ -49,6 +47,7 @@ public:
 
 		if (start == NULL){
 			start = new_node;
+			new_node->next = NULL;
 		}
 		else{
 			Node<TYPE>* tmp = start;
@@ -88,7 +87,7 @@ public:
 	void Clear(){
 		Node<TYPE>* tmp = start;
 
-		while (tmp == NULL){
+		while (tmp){
 
 			tmp = tmp->next;
 			delete tmp->prev;
@@ -96,6 +95,61 @@ public:
 
 		start = NULL;
 
+	}
+
+	const TYPE* Front() const{
+		
+		return this->start;
+
+	}
+
+	const TYPE* Back() const{
+		Node<TYPE>* tmp=start;
+
+		while (tmp->next){
+			tmp = tmp->next;
+		}
+
+		return tmp->next;
+	}
+
+	void PushFront(const TYPE& new_data){
+		Node<TYPE>* new_node = new Node<TYPE>(new_data);
+
+		if (start == NULL){
+			start = new_node;
+			new_node->next = NULL;
+		}
+		else{
+	
+			new_node->next = start;
+			start = new_node;
+		}
+	}
+
+	void PopBack(TYPE& data){
+		Node<TYPE>* tmp = start;
+		while (tmp->next){
+			tmp = tmp->next;
+		}
+		data = tmp->data;
+		delete tmp;
+	}
+
+	void PopFront(TYPE& data){
+		if (start == NULL){
+			printf("List is empty!!!");
+		}
+		
+		else
+		{
+			data = start->data;
+
+			Node<TYPE>* tmp = start;
+			start = start->next;
+			start->prev = NULL;
+			delete tmp;
+		}
 	}
 
 };
