@@ -88,29 +88,30 @@ public:
 		Node<TYPE>* tmp = start;
 
 		while (tmp){
-
-			tmp = tmp->next;
+			
 			delete tmp->prev;
+			tmp = tmp->next;
+			
 		}
 
 		start = NULL;
 
 	}
 
-	const TYPE* Front() const{
+	const Node<TYPE>* Front() const{
 		
 		return this->start;
 
 	}
 
-	const TYPE* Back() const{
+	const Node<TYPE>* Back() const{
 		Node<TYPE>* tmp=start;
 
 		while (tmp->next){
 			tmp = tmp->next;
 		}
 
-		return tmp->next;
+		return tmp;
 	}
 
 	void PushFront(const TYPE& new_data){
@@ -128,11 +129,19 @@ public:
 	}
 
 	void PopBack(TYPE& data){
-		Node<TYPE>* tmp = start;
-		while (tmp->next){
-			tmp = tmp->next;
+		const Node<TYPE>* tmp = Back();
+
+		data = tmp->data;//Em guardo data
+		
+
+		Node<TYPE>* tmp1 = start;
+		//Se que estic iterant la llista dos vegades, però no se moltbé com posar el el next del penultim node a NULL
+		while (tmp1->next){
+			tmp1 = tmp1->next;
 		}
-		data = tmp->data;
+		
+		tmp1 = tmp1->prev;
+		tmp1->next = NULL;
 		delete tmp;
 	}
 
@@ -143,12 +152,52 @@ public:
 		
 		else
 		{
-			data = start->data;
+			data = start->data; // em guardo data
 
 			Node<TYPE>* tmp = start;
 			start = start->next;
 			start->prev = NULL;
 			delete tmp;
+		}
+	}
+
+	void Insert(uint position, const TYPE& new_data) const{
+		
+		if (start == NULL){
+			printf("List is empty!!!");
+		}
+		else{
+			Node<TYPE>* new_node = new Node<TYPE>(new_data);
+			Node<TYPE>* tmp = start;
+
+			for (int i = 0 ; i < position-1; i++){
+				tmp = tmp->next;
+			}
+			new_node->next = tmp->next;
+			tmp->next = new_node;
+			new_node->prev = tmp;
+
+			new_node = new_node->next;
+			new_node->prev = tmp->next;
+
+		}
+	}
+
+	void Remove(uint position){
+		if (start == NULL){
+			printf("List is empty!!!");
+		}
+		else{
+			Node<TYPE>* tmp = start;
+			Node<TYPE>* tmp1;
+			for (int i = 0; i < position-2; i++){
+				tmp = tmp->next;
+			}
+			tmp1 = tmp->next;
+			tmp->next = tmp->next->next;
+			tmp = tmp->next;
+			tmp->prev = tmp->prev->prev;
+			delete tmp1;
 		}
 	}
 
