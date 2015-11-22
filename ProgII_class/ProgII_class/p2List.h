@@ -38,9 +38,6 @@ public:
 		Clear();
 	}
 
-	Node<TYPE>* GetStart()const {
-		return start;
-	}
 
 	void PushBack(const TYPE& new_data){
 		Node<TYPE>* new_node = new Node<TYPE>(new_data);
