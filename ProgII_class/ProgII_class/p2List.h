@@ -144,7 +144,7 @@ public:
 
 	void PopFront(TYPE& data){
 		if (start == NULL){
-			printf("List is empty!!!");
+			return false;
 		}
 		
 		else
@@ -158,10 +158,10 @@ public:
 		}
 	}
 
-	void Insert(uint position, const TYPE& new_data) const{
+	void Insert(uint position, const TYPE& new_data){//Millorar si li passes una posició vàlida
 		
 		if (start == NULL){
-			printf("List is empty!!!");
+			printf("");
 		}
 		else{
 			Node<TYPE>* new_node = new Node<TYPE>(new_data);
@@ -180,9 +180,9 @@ public:
 		}
 	}
 
-	void Remove(uint position){
+	void Remove(uint position){//Millorar si li passes una posició vàlida
 		if (start == NULL){
-			printf("List is empty!!!");
+			printf("");
 		}
 		else{
 			Node<TYPE>* tmp = start;
