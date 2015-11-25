@@ -109,6 +109,8 @@ public:
 		
 	}
 
+
+
 	void ShrinkToFit(){
 		if(capacity != num_elem){
 			TYPE* tmp = data;
@@ -152,4 +154,25 @@ public:
 
 	}
 };
+
+template <class TYPE>
+class p2Queue{
+private:
+	DynArray<TYPE> start;
+
+public:
+
+	void Push(const TYPE& new_data){
+		start.PushBack(new_data);
+	}
+
+	void Pop(TYPE& data){
+		static int i= 0;
+		start.At(i);
+		i++;
+	
+	}
+
+};
+
 #endif

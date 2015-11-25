@@ -144,7 +144,7 @@ public:
 
 	void PopFront(TYPE& data){
 		if (start == NULL){
-			return false;
+			printf("ALoro");
 		}
 		
 		else
@@ -212,6 +212,31 @@ insert(uint)- posar un node al mig.
 remove(uint)- treu el node de la posició
 
 */
+
+template <class TYPE>
+class p2Stack
+{
+private:
+	p2List<TYPE> start;
+
+public:
+	p2Stack(){}
+	~p2Stack(){}
+
+
+	void Push(const TYPE& new_data){
+
+		start.PushFront(new_data);
+	}
+
+
+	void Pop(TYPE& data){
+
+		start->PopFront(data);
+
+	}
+
+};
 
 #endif
 
