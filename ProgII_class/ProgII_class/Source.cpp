@@ -1,8 +1,20 @@
 #include <iostream>
 #include "p2List.h"
+#include "Graph.h"
 
+int Factorial(int num){
+
+		if (num > 1){
+			return num*Factorial(num-1);
+		}
+		else{
+			return 1;
+		}
+
+}
 
 int main(){
+	/*
 	//Proves llista
 	p2List<float> proba_llista;
 	float a_ll = 1.0f;
@@ -31,6 +43,22 @@ int main(){
 	proba_pila.Push(2.0f);
 
 	proba_pila.Pop(a_p);
+	*/
+	int result = 3;
 
+	Factorial(result);
+
+
+	Graph<int> proba_graph;
+	
+	proba_graph.AddNode(1);
+	proba_graph.GetNode(1);
+	proba_graph.AddNode(2, proba_graph.GetNode(1));
+	
+	
 	return 0;
 }
+
+//LEs crides recursives sempre tenen una condició de sortida
+
+

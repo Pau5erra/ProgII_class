@@ -232,7 +232,7 @@ public:
 
 	void Pop(TYPE& data){
 
-		start->PopFront(data);
+		start.PopFront(data);
 
 	}
 
