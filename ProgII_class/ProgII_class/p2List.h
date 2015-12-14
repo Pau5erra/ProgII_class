@@ -25,9 +25,11 @@ template<class TYPE>
 class p2List{
 private:
 
-	Node<TYPE>* start =  NULL;
+	Node<TYPE>* start = NULL;
 
 public:
+
+
 //Constructor
 	p2List(){
 

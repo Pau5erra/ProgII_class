@@ -2,75 +2,52 @@
 #define _GRAPH_
 
 #include "Definitions.h"
-#include "DynArray.h"
+//#include "DynArray.h"
 #include "p2List.h"
 
-template <class TYPE>
-
-struct NodeGraph{
-private:
-	TYPE data;
-	DynArray<TYPE*> links;
-public:
-
-	NodeGraph(const TYPE& data){
-		this->data = data;
-	}
-
-};
 
 template <class TYPE>
 class Graph{
+public:
+		struct NodeGraph{
+			TYPE data;
+			p2List<NodeGraph*> links;
+
+			NodeGraph(const TYPE& data){
+				this->data = data;
+			}
+			~NodeGraph(){}
+
+			void Link(NodeGraph* children){
+				this->links.PushBack(children);
+			}
+		};
+
 private:
-	p2List<NodeGraph*> nodes = NULL;
+	p2List<NodeGraph*> nodes;
+
 
 public:
 	Graph(){}
 
 	~Graph(){}
+	
+	NodeGraph* AddNode(const TYPE& new_data){
+		NodeGraph* new_node = new NodeGraph(new_data);
+		nodes.PushBack(new_node);
 
-	int AddNode(const TYPE& new_data, NodeGraph* pare = NULL){
-		NodeGraph<TYPE*> new_node = new NodeGraph<TYPE*>(new_data);
-		
-		if (pare != NULL){
-			pare->links->PushBack(new_node);
-		}
-
-		nodes->PushBack(new_node);
-
-		if (start == NULL)
-			start = new_node;
-
-		p2List<NodeGraph*> tmp = start;
-
-		int position = 0;
-		while (tmp->next){
-			position++;
-		}
-
-		return position;
+		return new_node;
 	}
+	
+	bool GoTo(NodeGraph* origin, NodeGraph* destiny){
 
-	void LinkNodes(NodeGraph* pare, NodeGraph* fill){
-
-		pare->links->PushBack(fill);
-
+		//Existeix a?, existeix b?
+		//si a==b
+		//Si te no té links retorna false
+		//Miro tots els links meus, si hi és true si no:
+		//Em poso a una cua o una llista i vai als fills (No anar als fils que estan a la llista)
 	}
-
-	NodeGraph* GetNode( int position){
-		p2List<NodeGraph*> tmp = start;
-		int i = 0;
-		while (tmp->next){
-
-			if (position = i){
-				break;
-			}
-
-			i++;
-		}
-		return tmp;
-	}
-
+	
 };
 
 
