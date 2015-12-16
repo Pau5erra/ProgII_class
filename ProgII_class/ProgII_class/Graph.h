@@ -4,6 +4,7 @@
 #include "Definitions.h"
 //#include "DynArray.h"
 #include "p2List.h"
+#include <graph.h>
 
 
 template <class TYPE>
@@ -15,6 +16,10 @@ public:
 
 			NodeGraph(const TYPE& data){
 				this->data = data;
+			}
+			NodeGraph(const NodeGraph& new_node){
+				this->data = new_node->data;
+				this->links = new_node->links;
 			}
 			~NodeGraph(){}
 
@@ -39,9 +44,20 @@ public:
 		return new_node;
 	}
 	
-	bool GoTo(NodeGraph* origin, NodeGraph* destiny){
-
-		//Existeix a?, existeix b?
+	bool IsReachable(NodeGraph* origin, NodeGraph* destiny){
+		bool ret = false;
+		NodeGraph* new_origin = new NodeGraph(*origin);
+		NodeGraph* new_destiny = new NodeGraph(*destiny);
+		if (origin == NULL || destiny == NULL){//Existeix a?, existeix b?
+			return ret;
+		}
+		else{
+			if (origin == destiny || new_origin){
+				ret = true;
+				return ret;
+			}
+		}
+		
 		//si a==b
 		//Si te no té links retorna false
 		//Miro tots els links meus, si hi és true si no:

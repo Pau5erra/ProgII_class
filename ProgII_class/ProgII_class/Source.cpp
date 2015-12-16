@@ -57,6 +57,7 @@ int main(){
 	Graph<int>::NodeGraph* node2 = proba_graph.AddNode(a+1);
 	Graph<int>::NodeGraph* node3 = proba_graph.AddNode(a+2);
 	
+
 	node1->Link(node2);
 	node2->Link(node3);
 	node3->Link(node2);
