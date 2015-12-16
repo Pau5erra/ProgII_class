@@ -200,6 +200,30 @@ public:
 		}
 	}
 
+	int BubbleSort(){
+		bool ret = true;
+		int num = 0;
+		Node<TYPE>* tmp = this->start;
+		TYPE tmp1;
+		while (ret)
+		{
+			if (tmp->next){//recorro tota la llista
+				if (tmp->data > tmp->next->data){//miro els primers dos elements
+					tmp1= tmp->next->data;
+					tmp->next->data = tmp->data;
+					tmp->data = tmp1;
+					tmp = tmp->next;
+					num++;
+				}
+				else{
+					//ret = false;
+				}
+			}
+ 			tmp = this->start;
+		}
+		return num;
+	}
+	
 };
 
 //NOUS METODES PER DILLUNS

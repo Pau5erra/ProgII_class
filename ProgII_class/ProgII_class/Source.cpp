@@ -1,6 +1,6 @@
 #include <iostream>
 #include "p2List.h"
-#include "Graph.h"
+//#include "Graph.h"
 
 int Factorial(int num){
 
@@ -14,20 +14,22 @@ int Factorial(int num){
 }
 
 int main(){
-	/*
+	
 	//Proves llista
 	p2List<float> proba_llista;
 	float a_ll = 1.0f;
+	proba_llista.PushBack(2.0f);
+	proba_llista.PushBack(1.0f);
 	proba_llista.PushBack(3.0f);
 	proba_llista.PushBack(4.0f);
 	proba_llista.PushBack(5.0f);
-	proba_llista.PushBack(6.0f);
-	proba_llista.PushBack(7.0f);
 
-	proba_llista.PushFront(2.0f);
+	//proba_llista.PushFront(2.0f);
 
 	proba_llista.Front();
 	proba_llista.Back();
+
+	proba_llista.BubbleSort();
 
 	proba_llista.PopBack(a_ll);
 	proba_llista.PopFront(a_ll);
@@ -43,7 +45,7 @@ int main(){
 	proba_pila.Push(2.0f);
 
 	proba_pila.Pop(a_p);
-	*/
+	/*
 	int result = 3;
 
 	Factorial(result);
@@ -61,7 +63,7 @@ int main(){
 	node1->Link(node2);
 	node2->Link(node3);
 	node3->Link(node2);
-
+	*/
 	return 0;
 }
 

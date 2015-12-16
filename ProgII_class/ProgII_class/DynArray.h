@@ -151,7 +151,10 @@ public:
 			memcpy(data, tmp, (position)*sizeof(TYPE));
 
 		}
+	}
 
+	TYPE* GetFirst(){
+		return At(0);
 	}
 };
 
